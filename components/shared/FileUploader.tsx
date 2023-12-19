@@ -4,7 +4,6 @@ import { useCallback, Dispatch, SetStateAction } from 'react'
 import type { FileWithPath } from '@uploadthing/react'
 import { useDropzone } from '@uploadthing/react/hooks'
 import { generateClientDropzoneAccept } from 'uploadthing/client'
-
 import { Button } from '@/components/ui/button'
 import { convertFileToUrl } from '@/lib/utils'
 

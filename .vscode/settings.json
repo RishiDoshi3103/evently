@@ -3,6 +3,7 @@
         "datepicker",
         "hookform",
         "nextjs",
+        "svix",
         "uploadthing"
     ]
 }

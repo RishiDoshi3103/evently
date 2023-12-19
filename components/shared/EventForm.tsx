@@ -106,6 +106,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
         console.log(error);
       }
     }
+    // console.log("Rishi=======?",files[0])
   }
   
   return (
