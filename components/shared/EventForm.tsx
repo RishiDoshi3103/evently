@@ -23,6 +23,12 @@ import { createEvent, updateEvent } from "@/lib/actions/event.actions"
 import { IEvent } from "@/lib/database/models/event.model"
 
 
+const formSchema = z.object({
+  username: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+})
+
 type EventFormProps = {
   userId: string
   type: "Create" | "Update"
@@ -31,6 +37,7 @@ type EventFormProps = {
 }
 
 const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
+  
   const [files, setFiles] = useState<File[]>([])
   const initialValues = event && type === 'Update' 
     ? { 
@@ -100,11 +107,12 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
       }
     }
   }
-
+  
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
-        <div className="flex flex-col gap-5 md:flex-row">
+
+      <div className="flex flex-col gap-5 md:flex-row">
           <FormField
             control={form.control}
             name="title"
@@ -117,6 +125,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="categoryId"
@@ -144,6 +153,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
                 </FormItem>
               )}
             />
+
           <FormField
               control={form.control}
               name="imageUrl"
@@ -260,7 +270,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
                   <FormControl>
                     <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
                       <Image
-                        src="/assets/icons/dollar.svg"
+                        src="/assets/icons/rupee.svg"
                         alt="dollar"
                         width={24}
                         height={24}
@@ -326,7 +336,8 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
         >
           {form.formState.isSubmitting ? (
             'Submitting...'
-          ): `${type} Event `}</Button>
+          ): `${type} Event `}
+        </Button>
       </form>
     </Form>
   )
